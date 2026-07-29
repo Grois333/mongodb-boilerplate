@@ -8,8 +8,17 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 let Person;
 
+//create a document instance using the Person model
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const person = new Person({
+    name: "Isaac",
+    age: 25,
+    favoriteFoods: ["Pizza", "Sushi"]
+  });
+  person.save((err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
