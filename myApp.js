@@ -21,8 +21,12 @@ const createAndSavePerson = (done) => {
   });
 };
 
+//create many people using Model.create() with the argument arrayOfPeople
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, (err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const findPeopleByName = (personName, done) => {
