@@ -85,10 +85,14 @@ const removeById = (personId, done) => {
   });
 };
 
+//delete all the people whose name is within the variable nameToRemove, using Model.remove()
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
 
-  done(null /*, data*/);
+  Person.remove({ name: nameToRemove }, (err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const queryChain = (done) => {
